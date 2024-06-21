@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <!-- UTF-8 문자 인코딩을 사용합니다. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 모바일 기기에서 웹페이지가 잘 보이도록 설정합니다. -->
+    <title>바둑 매니아 - 종합 바둑 커뮤니티</title>
+    <!-- 웹페이지의 제목을 설정합니다. -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 구글 폰트에서 Noto Sans KR 폰트를 가져옵니다. -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .page-wrapper {
+            display: flex;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+        .banner-left, .banner-right {
+            width: 160px;
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+        header {
+            background-color: #35424a;
+            color: white;
+            padding: 1rem 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        .user-controls {
+            text-align: right;
+        }
+        .signup-btn, .login-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 5px 10px;
+            text-decoration: none;
+            border-radius: 3px;
+        }
+        #login-form {
+            display: none;
+            margin-top: 10px;
+        }
+        .section {
+            background-color: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .product-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <aside class="banner-left">
+            <!-- 왼쪽 배너 광고 공간입니다. -->
+            <div style="height: 600px; background-color: #ddd; display: flex; justify-content: center; align-items: center;">
+                좌측 배너 광고
+            </div>
+        </aside>
+        
+        <div class="main-content">
+            <!-- 메인 콘텐츠 영역입니다. -->
+            <header>
+                <!-- 웹사이트의 헤더 부분입니다. -->
+                <div class="container">
+                    <div class="logo">
+                        <!-- 로고를 표시하는 부분입니다. -->
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="10" width="180" height="180" fill="#DCB35C" stroke="#000" stroke-width="5"/>
+                            <circle cx="50" cy="50" r="20" fill="#000" />
+                            <circle cx="150" cy="50" r="20" fill="#FFF" stroke="#000" stroke-width="2"/>
+                            <circle cx="50" cy="150" r="20" fill="#FFF" stroke="#000" stroke-width="2"/>
+                            <circle cx="150" cy="150" r="20" fill="#000" />
+                            <line x1="10" y1="100" x2="190" y2="100" stroke="#000" stroke-width="2"/>
+                            <line x1="100" y1="10" x2="100" y2="190" stroke="#000" stroke-width="2"/>
+                            <text x="100" y="100" font-family="Noto Sans KR, sans-serif" font-size="24" text-anchor="middle" dy=".3em" fill="#8B4513">바둑</text>
+                        </svg>
+                        <h1>바둑 매니아</h1>
+                    </div>
+                    <div class="user-controls">
+                        <!-- 사용자 컨트롤(포인트, 회원가입, 로그인) 영역입니다. -->
+                        <div id="user-points">포인트: <span id="points-value">0</span></div>
+                        <!-- 사용자의 포인트를 표시합니다. -->
+                        <a href="#signup" class="signup-btn">회원가입</a>
+                        <!-- 회원가입 버튼입니다. -->
+                        <a href="#login" class="login-btn" id="login-btn">로그인</a>
+                        <!-- 로그인 버튼입니다. -->
+                        <form id="login-form">
+                            <!-- 로그인 폼입니다. -->
+                            <input type="email" id="login-email" placeholder="이메일" required>
+                            <!-- 이메일 입력 필드입니다. -->
+                            <input type="password" id="login-password" placeholder="비밀번호" required>
+                            <!-- 비밀번호 입력 필드입니다. -->
+                            <button type="submit">로그인</button>
+                            <!-- 로그인 제출 버튼입니다. -->
+                        </form>
+                    </div>
+                </div>
+            </header>
+
+            <div class="container">
+                <!-- 메인 콘텐츠의 컨테이너입니다. -->
+                <section id="signup-section" class="section">
+                    <!-- 회원가입 섹션입니다. -->
+                    <h2>회원가입</h2>
+                    <form id="signup-form">
+                        <input type="email" id="signup-email" placeholder="이메일" required>
+                        <input type="password" id="signup-password" placeholder="비밀번호" required>
+                        <button type="submit">가입하기</button>
+                    </form>
+                    <div id="signup-message"></div>
+                </section>
+
+                <section id="home" class="news-section section">
+                    <!-- 뉴스 섹션입니다. -->
+                    <h2>최신 바둑 뉴스</h2>
+                    <article>
+                        <h3><a href="#news1">신진서 9단, 응씨배 결승 진출</a></h3>
+                        <div class="image-placeholder">
+                            [이미지 설명: 신진서 9단이 깊은 생각에 잠겨 바둑판을 응시하고 있는 모습.]
+                        </div>
+                        <p>한국의 신진서 9단이 중국의 커제 9단을 꺾고 응씨배 결승에 진출했습니다. 결승전은 다음 달 열릴 예정입니다.</p>
+                    </article>
+                </section>
+
+                <section id="boards" class="board-section section">
+                    <!-- 게시판 섹션입니다. -->
+                    <h2>게시판</h2>
+                    <div class="board">
+                        <h3>자유게시판</h3>
+                        <ul>
+                            <li><a href="#post1">초보 바둑 공부법 추천해주세요</a></li>
+                            <li><a href="#post2">어제 본 프로기사의 묘수, 정말 대단했어요!</a></li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section id="board-write" class="section">
+                    <!-- 게시글 작성 섹션입니다. -->
+                    <h2>새 게시글 작성</h2>
+                    <form id="post-form">
+                        <input type="text" id="post-title" placeholder="제목을 입력하세요" required>
+                        <textarea id="post-content" placeholder="내용을 입력하세요" required></textarea>
+                        <button type="submit">게시하기</button>
+                    </form>
+                </section>
+
+                <section id="comment-section" class="section">
+                    <!-- 댓글 섹션입니다. -->
+                    <h2>댓글</h2>
+                    <form id="comment-form">
+                        <input type="text" id="comment-input" placeholder="댓글을 입력하세요" required>
+                        <button type="submit">등록</button>
+                    </form>
+                    <ul id="comments"></ul>
+                </section>
+
+                <section class="shop-section section">
+                    <!-- 쇼핑 섹션입니다. -->
+                    <h2>바둑 용품 쇼핑</h2>
+                    <div class="product-list">
+                        <div class="product-item">
+                            <img src="baduk-set.jpg" alt="바둑 세트">
+                            <h3>프리미엄 바둑 세트</h3>
+                            <p>가격: 50,000원</p>
+                            <button onclick="addToCart('프리미엄 바둑 세트', 50000)">장바구니 담기</button>
+                        </div>
+                        <div class="product-item">
+                            <img src="baduk-book.jpg" alt="바둑 교재">
+                            <h3>바둑 마스터 교재</h3>
+                            <p>가격: 30,000원</p>
+                            <button onclick="addToCart('바둑 마스터 교재', 30000)">장바구니 담기</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <aside class="banner-right">
+            <!-- 오른쪽 배너 광고 공간입니다. -->
+            <div style="height: 600px; background-color: #ddd; display: flex; justify-content: center; align-items: center;">
+                우측 배너 광고
+            </div>
+        </aside>
+    </div>
+
+    <div id="point-notification"></div>
+    <!-- 포인트 적립 알림을 표시하는 div입니다. -->
+
+    <script>
+        let userPoints = 0;
+        // 사용자의 포인트를 저장하는 변수입니다.
+
+        let isLoggedIn = false;
+        // 사용자의 로그인 상태를 저장하는 변수입니다.
+
+        const loginBtn = document.getElementById('login-btn');
+        // 로그인 버튼 요소를 가져옵니다.
+
+        const loginForm = document.getElementById('login-form');
+        // 로그인 폼 요소를 가져옵니다.
+
+        loginBtn.addEventListener('click', function(e) {
+            // 로그인 버튼 클릭 시 실행되는 함수입니다.
+            e.preventDefault();
+            if (!isLoggedIn) {
+                loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+                // 로그인 폼을 보이거나 숨깁니다.
+            } else {
+                logout();
+                // 로그아웃 함수를 실행합니다.
+            }
+        });
+
+        loginForm.addEventListener('submit', function(e) {
+            // 로그인 폼 제출 시 실행되는 함수입니다.
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            if (email && password) {
+                isLoggedIn = true;
+                loginBtn.textContent = '로그아웃';
+                loginForm.style.display = 'none';
+                updateUserInfo(email);
+                // 로그인 성공 처리를 합니다.
+            } else {
+                alert('이메일과 비밀번호를 모두 입력해주세요.');
+                // 입력 오류 메시지를 표시합니다.
+            }
+        });
+
+        function logout() {
+            // 로그아웃 처리를 하는 함수입니다.
+            isLoggedIn = false;
+            loginBtn.textContent = '로그인';
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            updateUserInfo('');
+        }
+
+        function updateUserInfo(email) {
+            // 사용자 정보를 업데이트하는 함수입니다.
+            const userPoints = document.getElementById('user-points');
+            const signupBtn = document.querySelector('.signup-btn');
+            if (isLoggedIn) {
+                userPoints.textContent = `${email} | 포인트: ${userPoints}`;
+                signupBtn.style.display = 'none';
+            } else {
+                userPoints.textContent = `포인트: 0`;
+                signupBtn.style.display = 'inline-block';
+            }
+        }
+
+        function updatePoints(amount, action) {
+            // 포인트를 업데이트하는 함수입니다.
+            if (!isLoggedIn) {
+                alert('포인트를 얻으려면 로그인이 필요합니다.');
+                return;
+            }
+            userPoints += amount;
+            document.getElementById('points-value').
